@@ -3,10 +3,12 @@
 
  This is a simple tool I made with ChatGPT for downloading tiles on [OGF](https://opengeofiction.net) then stitching them to one pretty map.
 
+ ![banner](./ex1.png)
+
  ## Setup
 
   First install the following dependencies with:
-  pip install flask requests pillow
+  `pip install flask requests pillow`
 
   After that you should be able to just run the app.py then on port 5000 of the machine you put it on it should show the site ready to use.
 
