@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSM Tile Downloader</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        #sidebar {
+            width: 20%;
+            background: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 15px;
+            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        h1 {
+            font-size: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        #downloadBtn {
+            background: #28a745;
+            color: white;
+        }
+
+        #startBtn {
+            background: #007bff;
+            color: white;
+        }
+
+        #stitchBtn {
+            background: #ff9800;
+            color: white;
+        }
+
+        #map {
+            flex-grow: 1;
+            height: 100vh;
+            z-index: 500;
+        }
+
+        #progress-container {
+            display: none;
+            margin-top: 10px;
+        }
+
+        #downloadLink {
+            display: none;
+            text-align: center;
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        #downloadLink:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+        <h1>OGF Tile Downloader</h1>
+        <label>Zoom Level: <input type="number" id="zoom" min="1" max="20" value="15"></label>
+        <label>Start Lat: <input type="text" id="lat1"></label>
+        <label>Start Lon: <input type="text" id="lon1"></label>
+        <label>End Lat: <input type="text" id="lat2"></label>
+        <label>End Lon: <input type="text" id="lon2"></label>
+
+        <button id="startBtn" onclick="startDownload()">Start Download</button>
+        <button id="stitchBtn" onclick="stitchMap()">Stitch Map</button>
+        
+        <div id="progress-container">
+            <p>Download Progress: <span id="progress-text">0 / 0</span></p>
+            <progress id="progress-bar" value="0" max="100"></progress>
+        </div>
+
+        <p id="status"></p>
+        <a id="downloadLink" target="_blank">Download Stitched Map</a>
+    </div>
+
+    <div id="map"></div>
+
+    <script>
+        let map = L.map('map').setView([0, 0], 2);
+        L.tileLayer('https://tile.opengeofiction.net/ogf-carto/{z}/{x}/{y}.png', { attribution: 'C OpenGeofiction' }).addTo(map);
+        
+        let drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+
+        let drawControl = new L.Control.Draw({
+            draw: {
+                polyline: false,
+                polygon: false,
+                circle: false,
+                marker: false,
+                circlemarker: false,
+                rectangle: true
+            },
+            edit: { featureGroup: drawnItems }
+        });
+
+        map.addControl(drawControl);
+
+        map.on(L.Draw.Event.CREATED, function(event) {
+            drawnItems.clearLayers();
+            let layer = event.layer;
+            drawnItems.addLayer(layer);
+            let bounds = layer.getBounds();
+            document.getElementById('lat1').value = bounds.getSouthWest().lat.toFixed(5);
+            document.getElementById('lon1').value = bounds.getSouthWest().lng.toFixed(5);
+            document.getElementById('lat2').value = bounds.getNorthEast().lat.toFixed(5);
+            document.getElementById('lon2').value = bounds.getNorthEast().lng.toFixed(5);
+        });
+
+        function startDownload() {
+            let zoom = document.getElementById('zoom').value;
+            let lat1 = document.getElementById('lat1').value;
+            let lon1 = document.getElementById('lon1').value;
+            let lat2 = document.getElementById('lat2').value;
+            let lon2 = document.getElementById('lon2').value;
+
+            if (!lat1 || !lon1 || !lat2 || !lon2) {
+                alert('Enter valid coordinates or draw a rectangle on the map!');
+                return;
+            }
+
+            document.getElementById('progress-container').style.display = "block";
+            document.getElementById('progress-text').innerText = "0 / 0";
+            document.getElementById('progress-bar').value = 0;
+
+            fetch('/start_download', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    zoom: parseInt(zoom),
+                    lat1: parseFloat(lat1), lon1: parseFloat(lon1),
+                    lat2: parseFloat(lat2), lon2: parseFloat(lon2)
+                })
+            }).then(res => res.json()).then(data => {
+                document.getElementById('status').innerText = data.status;
+                checkProgress();
+            });
+        }
+
+        function checkProgress() {
+            let interval = setInterval(() => {
+                fetch('/progress').then(res => res.json()).then(data => {
+                    if (data.total > 0) {
+                        document.getElementById('progress-text').innerText = `${data.downloaded} / ${data.total}`;
+                        document.getElementById('progress-bar').max = data.total;
+                        document.getElementById('progress-bar').value = data.downloaded;
+                    }
+
+                    if (data.downloaded >= data.total) {
+                        clearInterval(interval);
+                        document.getElementById('status').innerText = "Download complete!";
+                    }
+                });
+            }, 1000);
+        }
+
+        function stitchMap() {
+            let zoom = document.getElementById('zoom').value;
+            fetch('/stitch_map', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ zoom: parseInt(zoom) })
+            }).then(res => res.json()).then(data => {
+                if (data.status === 'Success') {
+                    document.getElementById('downloadLink').href = '/download/' + data.file.split('/').pop();
+                    document.getElementById('downloadLink').style.display = 'block';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
