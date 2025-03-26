@@ -12,6 +12,12 @@ import re
 
 app = Flask(__name__)
 
+
+TILE_SERVERS = {
+    "OGF Carto": "https://tile.opengeofiction.net/ogf-carto/",
+    "Arhet Carto": "https://tiles02.rent-a-planet.com/arhet-carto/"
+}
+
 tile_folder = "osm_tiles"
 stitched_folder = "stitched_maps"
 progress = {"total": 0, "downloaded": 0}
@@ -76,8 +82,12 @@ def start_download():
     zoom = int(data['zoom'])
     lat1, lon1 = round(data['lat1'], 6), round(data['lon1'], 6)
     lat2, lon2 = round(data['lat2'], 6), round(data['lon2'], 6)
+    tile_server = data.get('tile_server', list(TILE_SERVERS.values())[0])  # Default to first server
 
-    Thread(target=download_tiles, args=("https://tiles05.opengeofiction.net/ogf-carto/", zoom, lat1, lon1, lat2, lon2)).start()
+    if tile_server not in TILE_SERVERS.values():
+        return jsonify({"status": "Error", "message": "Invalid tile server"}), 400
+
+    Thread(target=download_tiles, args=(tile_server, zoom, lat1, lon1, lat2, lon2)).start()
     return jsonify({"status": "Download started", "total_tiles": progress["total"]})
 
 @app.route('/progress')
@@ -137,4 +147,3 @@ def download_file(filename):
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
-
