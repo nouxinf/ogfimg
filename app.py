@@ -15,7 +15,9 @@ app = Flask(__name__)
 
 TILE_SERVERS = {
     "OGF Carto": "https://tile.opengeofiction.net/ogf-carto/",
-    "Arhet Carto": "https://tiles02.rent-a-planet.com/arhet-carto/"
+    "Arhet Carto": "https://tiles02.rent-a-planet.com/arhet-carto/",
+    "OGF Topo": "https://tiles04.rent-a-planet.com/ogf-topo/",
+    "CyclOGF": "https://tiles06.opengeofiction.net/cyclogf/"
 }
 
 tile_folder = "osm_tiles"
