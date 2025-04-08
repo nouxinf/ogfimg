@@ -189,6 +189,10 @@
 		}
 
 	}
+	// Add default tile layer initially
+	tileLayer = L.tileLayer('https://tile.opengeofiction.net/ogf-carto/{z}/{x}/{y}.png', {
+		attribution: 'Tiles and data courtesy OpenGeofiction and contributors.'
+	}).addTo(map);
 	// Initialize map drawing controls
 	let drawnItems = new L.FeatureGroup();
 	map.addLayer(drawnItems);
