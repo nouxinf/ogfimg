@@ -32,7 +32,7 @@ We are not responsible for any server overloading or DOS attacks that are caused
 ![Roantra, West Uletha in OGF carto](/images/ex3.png)
 *Roantra, West Uletha in OGF carto*
 
-![KFC sponsored dicatatorship in Arhet-Carto](ex4.png)
+![KFC sponsored dicatatorship in Arhet-Carto](images/ex4.png)
 *KFC sponsored dicatatorship in Arhet-Carto*
 
 ![Linlithgow, Humanitarian](/images/ex5.png)
