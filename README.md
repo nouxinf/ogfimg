@@ -1,9 +1,9 @@
 # ogfimg
- OGF/OSM Image/tile downloader and stitcher
+OGF/OSM Image/tile downloader and stitcher
 
- This is a simple tool I made with ChatGPT for downloading tiles on [OGF](https://opengeofiction.net) then stitching them to one pretty map.
-
- ![banner](./ex1.png)
+This is a simple tool I made with ChatGPT for downloading tiles on [OGF](https://opengeofiction.net) then stitching them to one pretty map.
+We are not responsible for any server overload or DOS attacks caused by this tool.
+![banner](/images/ex1.png)
 
  ## Setup
 
@@ -24,11 +24,17 @@ If you are done with making images it can stay on or you can just stop it by clo
 
 ## Examples
 
-![Oban, Scotland in openbusmap](/ex2.png)
+![Oban, Scotland in openbusmap](/images/ex2.png)
 *Oban, Scotland (OPNVKARTE)*
 
-![Roantra, West Uletha in OGF carto](ex3.png)
+![Roantra, West Uletha in OGF carto](/images/ex3.png)
 *Roantra, West Uletha in OGF carto*
 
-![KFC sponsored dicatatorship in Arhet-Carto](ex4.png)
+![KFC sponsored dicatatorship in Arhet-Carto](/images/ex4.png)
 *KFC sponsored dicatatorship in Arhet-Carto*
+
+![Linlithgow, Humanitarian](/images/ex5.png)
+*Linlithgow in Humanitarian style*
+
+![Belfast city centre, OSM France](/images/ex6.png)
+*Belfast city centre in OSM France style*

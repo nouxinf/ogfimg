@@ -18,7 +18,9 @@ TILE_SERVERS = {
     "Arhet Carto": "https://tiles02.rent-a-planet.com/arhet-carto/",
     "OGF Topo": "https://tiles04.rent-a-planet.com/ogf-topo/",
     "CyclOGF": "https://tiles06.opengeofiction.net/cyclogf/",
-    "ÖPNVKarte/Openbusmap": "https://tile.memomaps.de/tilegen/"
+    "ÖPNVKarte/Openbusmap": "https://tile.memomaps.de/tilegen/",
+    "Humanitarian Layer": "https://a.tile.openstreetmap.fr/hot/",
+    "OSM France": "https://a.tile.openstreetmap.fr/osmfr/"
 }
 
 tile_folder = "osm_tiles"

@@ -56,6 +56,9 @@
 		gap: 15px;
 		box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
 		z-index: 1000;
+		top: 0;
+		bottom: 0;
+		overflow-y: scroll;
 	}
 
 	h1 {
@@ -143,7 +146,9 @@
 				<option value="https://tiles04.rent-a-planet.com/ogf-topo/">OGF Topo</option>
 				<option value="https://tiles06.opengeofiction.net/cyclogf/">CyclOGF</option>
 				<option value="https://tiles02.rent-a-planet.com/arhet-carto/">Arhet Carto</option>
-				<option value="https://tile.memomaps.de/tilegen/">ÖPNVKarte/Openbusmap</option>
+				<option value="https://tile.memomaps.de/tilegen/">ÖPNVKarte/Openbusmap (OSM)</option>
+				<option value="https://a.tile.openstreetmap.fr/hot/">Humanitarian (OSM)</option>
+				<option value="https://a.tile.openstreetmap.fr/osmfr/">OSM France (OSM)</option>
 			</select>
 		</label>
 		<label>Zoom Level: <input type="number" id="zoom" min="1" max="20" value="15"></label>
@@ -182,6 +187,15 @@
 			tileLayer = L.tileLayer(selectedServer + '{z}/{x}/{y}.png', {
 			attribution: 'Tiles and data created by Geofictician and contributors, built on the OpenStreetMap platform, including creative re-use of data shared by OpenStreetMap contributors.'
 			}).addTo(map);
+		
+		} else if (selectedServer == "https://a.tile.openstreetmap.fr/hot/") {
+			tileLayer = L.tileLayer(selectedServer + '{z}/{x}/{y}.png', {
+			attribution: '(C) OpenStreetMap contributors. Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France.'
+		}).addTo(map);
+		} else if (selectedServer == "https://a.tile.openstreetmap.fr/osmfr/") {
+			tileLayer = L.tileLayer(selectedServer + '{z}/{x}/{y}.png', {
+			attribution: '(C) Openstreetmap France | Data (C) OpenStreetMap contributors'
+		}).addTo(map);
 		} else {
 			tileLayer = L.tileLayer(selectedServer + '{z}/{x}/{y}.png', {
 			attribution: 'Map memomaps.de CC-BY-SA, map data Openstreetmap ODbL'
