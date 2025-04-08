@@ -22,6 +22,9 @@ Once you are done with downloading an image always refresh the main page (just i
 
 If you are done with making images it can stay on or you can just stop it by closing the command prompt.
 
+## NOTE
+We are not responsible for any server overloading or DOS attacks that are caused by this tool. We highly warn you to keep downloads small on OSM related tile servers as it can easialy overload them. OGF ones can take a little bit more but try to keep them below 2k tiles also (higher can be done but dont always do large amouts)
+
 ## Examples
 
 ![Oban, Scotland in openbusmap](/ex2.png)
