@@ -143,6 +143,7 @@
 				<option value="https://tiles04.rent-a-planet.com/ogf-topo/">OGF Topo</option>
 				<option value="https://tiles06.opengeofiction.net/cyclogf/">CyclOGF</option>
 				<option value="https://tiles02.rent-a-planet.com/arhet-carto/">Arhet Carto</option>
+				<option value="https://tile.memomaps.de/tilegen/">ÖPNVKarte/Openbusmap</option>
 			</select>
 		</label>
 		<label>Zoom Level: <input type="number" id="zoom" min="1" max="20" value="15"></label>
@@ -169,13 +170,28 @@
 		if(tileLayer) {
 			map.removeLayer(tileLayer);
 		}
-		tileLayer = L.tileLayer(selectedServer + '{z}/{x}/{y}.png', {
-			attribution: '© OpenGeofiction / Rent-a-Planet'
+		if (selectedServer == "https://tile.opengeofiction.net/ogf-carto/" || selectedServer == "https://tiles04.rent-a-planet.com/ogf-topo/") {
+			tileLayer = L.tileLayer(selectedServer + '{z}/{x}/{y}.png', {
+			attribution: 'Tiles and data courtesy OpenGeofiction and contributors.'
 		}).addTo(map);
+		} else if (selectedServer == "https://tiles06.opengeofiction.net/cyclogf/") {
+			tileLayer = L.tileLayer(selectedServer + '{z}/{x}/{y}.png', {
+			attribution: 'Tiles and data courtesy OpenGeofiction and contributors. Tiles style by CyclOSM.'
+		}).addTo(map);
+		} else if (selectedServer == "https://tiles02.rent-a-planet.com/arhet-carto/") {
+			tileLayer = L.tileLayer(selectedServer + '{z}/{x}/{y}.png', {
+			attribution: 'Tiles and data created by Geofictician and contributors, built on the OpenStreetMap platform, including creative re-use of data shared by OpenStreetMap contributors.'
+			}).addTo(map);
+		} else {
+			tileLayer = L.tileLayer(selectedServer + '{z}/{x}/{y}.png', {
+			attribution: 'Map memomaps.de CC-BY-SA, map data Openstreetmap ODbL'
+		}).addTo(map);
+		}
+
 	}
 	// Add default tile layer initially
 	tileLayer = L.tileLayer('https://tile.opengeofiction.net/ogf-carto/{z}/{x}/{y}.png', {
-		attribution: '© OpenGeofiction'
+		attribution: 'Tiles and data courtesy OpenGeofiction and contributors.'
 	}).addTo(map);
 	// Initialize map drawing controls
 	let drawnItems = new L.FeatureGroup();
