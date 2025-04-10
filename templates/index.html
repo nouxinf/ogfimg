@@ -139,10 +139,39 @@
 	#downloadLink:hover {
 		text-decoration: underline;
 	}
+	.home-icon {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      background: #fff;
+      padding: 0.3rem 0.6rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      z-index: 2000;
+      transition: transform 0.3s ease;
+    }
+
+    .home-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .home-icon a {
+      text-decoration: none;
+      color: #333;
+      display: block;
+    }
+
+    .home-icon a:hover {
+      color: #007acc;
+    }
 	</style>
 </head>
 
 <body>
+	<div class="home-icon">
+		<a href="/gallery" title="Go to gallery" target="_blank">🖼️</a>
+	</div>
 	<div id="sidebar">
 		<h1>OGF Tile Downloader</h1>
 		<label>Tile Server: <select id="tileServer" onchange="changeTileServer()">

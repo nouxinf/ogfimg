@@ -81,6 +81,10 @@ def download_tiles(tile_server, zoom, lat1, lon1, lat2, lon2, max_threads=12):
 def index():
     return render_template('index.html')
 
+@app.route('/gallery/')
+def gallery():
+    return render_template('gallery.html')
+
 @app.route('/start_download', methods=['POST'])
 def start_download():
     data = request.json
