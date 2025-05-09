@@ -1,110 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ogfimg Gallery</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background-color: #f4f4f4;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ogfimg Gallery</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background-color: #f4f4f4;
+      }
 
-    .home-icon {
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      font-size: 1.5rem;
-      background: #fff;
-      padding: 0.3rem 0.6rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-      transition: transform 0.3s ease;
-    }
+      .home-icon {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        font-size: 1.5rem;
+        background: #fff;
+        padding: 0.3rem 0.6rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        transition: transform 0.3s ease;
+      }
 
-    .home-icon:hover {
-      transform: scale(1.1);
-    }
+      .home-icon:hover {
+        transform: scale(1.1);
+      }
 
-    .home-icon a {
-      text-decoration: none;
-      color: #333;
-      display: block;
-    }
+      .home-icon a {
+        text-decoration: none;
+        color: #333;
+        display: block;
+      }
 
-    .home-icon a:hover {
-      color: #007acc;
-    }
+      .home-icon a:hover {
+        color: #007acc;
+      }
 
-    .gallery-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem;
-    }
+      .gallery-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+      }
 
-    .gallery {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      max-width: 800px;
-      gap: 2rem;
-    }
+      .gallery {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 800px;
+        gap: 2rem;
+      }
 
-    .gallery-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      background-color: #fff;
-      padding: 0.5rem;
-      transition: transform 0.3s ease;
-    }
+      .gallery-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid #ccc;
+        border-radius: 12px;
+        background-color: #fff;
+        padding: 0.5rem;
+        transition: transform 0.3s ease;
+      }
 
-    .gallery-item:hover {
-      transform: scale(1.02);
-    }
+      .gallery-item:hover {
+        transform: scale(1.02);
+      }
 
-    .gallery img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
+      .gallery img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
 
-    .caption {
-      margin-top: 0.5rem;
-      color: #555;
-      font-size: 1rem;
-      text-align: center;
-    }
+      .caption {
+        margin-top: 0.5rem;
+        color: #555;
+        font-size: 1rem;
+        text-align: center;
+      }
 
-    .sub-caption {
-      font-size: 0.8rem;
-      color: #999;
-      text-align: center;
-      margin-top: 0.2rem;
-    }
+      .sub-caption {
+        font-size: 0.8rem;
+        color: #999;
+        text-align: center;
+        margin-top: 0.2rem;
+      }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 1rem;
-      color: #333;
-    }
+      h1 {
+        text-align: center;
+        margin-bottom: 1rem;
+        color: #333;
+      }
 
-    h2 {
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #666;
-      font-weight: normal;
-    }
-    .back-to-top {
+      h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #666;
+        font-weight: normal;
+      }
+      .back-to-top {
         position: fixed;
         bottom: 2rem;
         right: 2rem;
@@ -117,139 +117,279 @@
         cursor: pointer;
         transition: transform 0.3s ease;
         z-index: 1000;
-    }
-    .back-to-top:hover {
-      transform: scale(1.1);
-    }
-  </style>
-</head>
-<body>
+      }
+      .back-to-top:hover {
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
+  <body>
     <button class="back-to-top" onclick="scrollToTop()">⬆️</button>
-  <div class="home-icon">
-    <a href="/" title="Go to Home">🏠</a>
-  </div>
-  <div class="gallery-container">
-    <h1>Ogfimg gallery</h1>
-    <h2>A gallery of images generated with <a href="https://github.com/minimapper-ogf/ogfimg"><code>ogfimg</code></a></h2>
-    <div class="gallery">
-      <div class="gallery-item">
-        <a href="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex1.png" target="_blank">
-          <img src="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex1.png" alt="Gallery Image 1" />
-        </a>
-        <div class="caption">A part of the Federal States of Archanta in OGF Carto</div>
-        <div class="sub-caption">Tiles and data courtesy OpenGeofiction and contributors.</div>
-      </div>
-      <div class="gallery-item">
-        <a href="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex2.png" target="_blank">
-          <img src="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex2.png" alt="Gallery Image 2" />
-        </a>
-        <div class="caption">Oban, Scotland in Opnvkarte</div>
-        <div class="sub-caption">Map memomaps.de CC-BY-SA, map data Openstreetmap ODbL</div>
-      </div>
-      <div class="gallery-item">
-        <a href="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex3.png" target="_blank">
-          <img src="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex3.png" alt="Gallery Image 3" />
-        </a>
-        <div class="caption">Roanta (OGF) in OGF-topo</div>
-        <div class="sub-caption">Tiles courtesy OpenGeofiction and contributors.</div>
-      </div>
-      <div class="gallery-item">
-        <a href="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex4.png" target="_blank">
-          <img src="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex4.png" alt="Gallery Image 4" />
-        </a>
-        <div class="caption">KFC sponsored dictatorship in Arhet-carto</div>
-        <div class="sub-caption">Tiles and data created by Geofictician and contributors, built on the OpenStreetMap platform, including creative re-use of data shared by OpenStreetMap contributors.</div>
-      </div>
-      <div class="gallery-item">
-        <a href="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex5.png" target="_blank">
-          <img src="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex5.png" alt="Gallery Image 5" />
-        </a>
-        <div class="caption">Linlithgow in Humanitarian style</div>
-        <div class="sub-caption">(C) OpenStreetMap contributors. Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France.</div>
-      </div>
-      <div class="gallery-item">
-        <a href="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex6.png" target="_blank">
-          <img src="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex6.png" alt="Gallery Image 6" />
-        </a>
-        <div class="caption">Belfast City Center in OSM France</div>
-        <div class="sub-caption">(C) Openstreetmap France | Data (C) OpenStreetMap contributors</div>
-      </div>
-      <div class="gallery-item">
-        <a href="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex7.png" target="_blank">
-          <img src="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex7.png" alt="Gallery Image 7" />
-        </a>
-        <div class="caption">The whole OGF world in OGF-carto</div>
-        <div class="sub-caption">Tiles and data courtesy OpenGeofiction and contributors.</div>
-      </div>
-      <div class="gallery-item">
-        <a href="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex8.png" target="_blank">
-          <img src="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex8.png" alt="Gallery Image 7" />
-        </a>
-        <div class="caption">Sonnenburg in OGF Carto</div>
-        <div class="sub-caption">Tiles and data courtesy OpenGeofiction and contributors.</div>
-      </div>
-      <div class="gallery-item">
-        <a href="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex9.png" target="_blank">
-          <img src="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex9.png" alt="Gallery Image 7" />
-        </a>
-        <div class="caption">Sainðaul in OGF carto</div>
-        <div class="sub-caption">Tiles and data courtesy OpenGeofiction and contributors.</div>
-      </div>
-      <div class="gallery-item">
-        <a href="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex10.png" target="_blank">
-          <img src="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex10.png" alt="Gallery Image 7" />
-        </a>
-        <div class="caption">Huntington, Makaska, FSA in OGF carto</div>
-        <div class="sub-caption">Tiles and data courtesy OpenGeofiction and contributors.</div>
-      </div>
-      <div class="gallery-item">
-        <a href="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex11.png" target="_blank">
-          <img src="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex11.png" alt="Gallery Image 7" />
-        </a>
-        <div class="caption">FSA in OGF carto</div>
-        <div class="sub-caption">Tiles and data courtesy OpenGeofiction and contributors.</div>
-      </div>
-      <div class="gallery-item">
-        <a href="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex12.png" target="_blank">
-          <img src="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex12.png" alt="Gallery Image 7" />
-        </a>
-        <div class="caption">Millcreek, Deodeca in OGF carto</div>
-        <div class="sub-caption">Tiles and data courtesy OpenGeofiction and contributors.</div>
-      </div>
-      <div class="gallery-item">
-        <a href="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex13.png" target="_blank">
-          <img src="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex13.png" alt="Gallery Image 7" />
-        </a>
-        <div class="caption">South east FSA in OGF carto</div>
-        <div class="sub-caption">Tiles and data courtesy OpenGeofiction and contributors.</div>
-      </div>
-      <div class="gallery-item">
-        <a href="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex14.png" target="_blank">
-          <img src="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex14.png" alt="Gallery Image 7" />
-        </a>
-        <div class="caption">Oudburg, Atreisie in OGF carto</div>
-        <div class="sub-caption">Tiles and data courtesy OpenGeofiction and contributors.</div>
-      </div>
-      <div class="gallery-item">
-        <a href="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex15.png" target="_blank">
-          <img src="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex15.png" alt="Gallery Image 7" />
-        </a>
-        <div class="caption">The Imperium canon in Arhet carto</div>
-        <div class="sub-caption">Tiles and data created by Geofictician and contributors, built on the OpenStreetMap platform, including creative re-use of data shared by OpenStreetMap contributors.</div>
-      </div>
-      <div class="gallery-item">
-        <a href="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex16.png" target="_blank">
-          <img src="https://raw.githubusercontent.com/minimapper-ogf/ogfimg/refs/heads/main/images/ex16.png" alt="Gallery Image 7" />
-        </a>
-        <div class="caption">AN114 in OGF carto</div>
-        <div class="sub-caption">Tiles and data courtesy OpenGeofiction and contributors.</div>
+    <div class="home-icon">
+      <a href="/" title="Go to Home">🏠</a>
+    </div>
+    <div class="gallery-container">
+      <h1>Ogfimg gallery</h1>
+      <h2>
+        A gallery of images generated with
+        <a href="https://github.com/minimapper-ogf/ogfimg"
+          ><code>ogfimg</code></a
+        >
+      </h2>
+      <div class="gallery">
+        <div class="gallery-item">
+          <a
+            href="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex1.png"
+            target="_blank"
+          >
+            <img
+              src="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex1.png"
+              alt="Gallery Image 1"
+            />
+          </a>
+          <div class="caption">
+            A part of the Federal States of Archanta in OGF Carto
+          </div>
+          <div class="sub-caption">
+            Tiles and data courtesy OpenGeofiction and contributors.
+          </div>
+        </div>
+        <div class="gallery-item">
+          <a
+            href="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex2.png"
+            target="_blank"
+          >
+            <img
+              src="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex2.png"
+              alt="Gallery Image 2"
+            />
+          </a>
+          <div class="caption">Oban, Scotland in Opnvkarte</div>
+          <div class="sub-caption">
+            Map memomaps.de CC-BY-SA, map data Openstreetmap ODbL
+          </div>
+        </div>
+        <div class="gallery-item">
+          <a
+            href="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex3.png"
+            target="_blank"
+          >
+            <img
+              src="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex3.png"
+              alt="Gallery Image 3"
+            />
+          </a>
+          <div class="caption">Roanta (OGF) in OGF-topo</div>
+          <div class="sub-caption">
+            Tiles courtesy OpenGeofiction and contributors.
+          </div>
+        </div>
+        <div class="gallery-item">
+          <a
+            href="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex4.png"
+            target="_blank"
+          >
+            <img
+              src="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex4.png"
+              alt="Gallery Image 4"
+            />
+          </a>
+          <div class="caption">KFC sponsored dictatorship in Arhet-carto</div>
+          <div class="sub-caption">
+            Tiles and data created by Geofictician and contributors, built on
+            the OpenStreetMap platform, including creative re-use of data shared
+            by OpenStreetMap contributors.
+          </div>
+        </div>
+        <div class="gallery-item">
+          <a
+            href="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex5.png"
+            target="_blank"
+          >
+            <img
+              src="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex5.png"
+              alt="Gallery Image 5"
+            />
+          </a>
+          <div class="caption">Linlithgow in Humanitarian style</div>
+          <div class="sub-caption">
+            (C) OpenStreetMap contributors. Tiles style by Humanitarian
+            OpenStreetMap Team hosted by OpenStreetMap France.
+          </div>
+        </div>
+        <div class="gallery-item">
+          <a
+            href="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex6.png"
+            target="_blank"
+          >
+            <img
+              src="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex6.png"
+              alt="Gallery Image 6"
+            />
+          </a>
+          <div class="caption">Belfast City Center in OSM France</div>
+          <div class="sub-caption">
+            (C) Openstreetmap France | Data (C) OpenStreetMap contributors
+          </div>
+        </div>
+        <div class="gallery-item">
+          <a
+            href="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex7.png"
+            target="_blank"
+          >
+            <img
+              src="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex7.png"
+              alt="Gallery Image 7"
+            />
+          </a>
+          <div class="caption">The whole OGF world in OGF-carto</div>
+          <div class="sub-caption">
+            Tiles and data courtesy OpenGeofiction and contributors.
+          </div>
+        </div>
+        <div class="gallery-item">
+          <a
+            href="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex8.png"
+            target="_blank"
+          >
+            <img
+              src="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex8.png"
+              alt="Gallery Image 7"
+            />
+          </a>
+          <div class="caption">Sonnenburg in OGF Carto</div>
+          <div class="sub-caption">
+            Tiles and data courtesy OpenGeofiction and contributors.
+          </div>
+        </div>
+        <div class="gallery-item">
+          <a
+            href="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex9.png"
+            target="_blank"
+          >
+            <img
+              src="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex9.png"
+              alt="Gallery Image 7"
+            />
+          </a>
+          <div class="caption">Sainðaul in OGF carto</div>
+          <div class="sub-caption">
+            Tiles and data courtesy OpenGeofiction and contributors.
+          </div>
+        </div>
+        <div class="gallery-item">
+          <a
+            href="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex10.png"
+            target="_blank"
+          >
+            <img
+              src="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex10.png"
+              alt="Gallery Image 7"
+            />
+          </a>
+          <div class="caption">Huntington, Makaska, FSA in OGF carto</div>
+          <div class="sub-caption">
+            Tiles and data courtesy OpenGeofiction and contributors.
+          </div>
+        </div>
+        <div class="gallery-item">
+          <a
+            href="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex11.png"
+            target="_blank"
+          >
+            <img
+              src="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex11.png"
+              alt="Gallery Image 7"
+            />
+          </a>
+          <div class="caption">FSA in OGF carto</div>
+          <div class="sub-caption">
+            Tiles and data courtesy OpenGeofiction and contributors.
+          </div>
+        </div>
+        <div class="gallery-item">
+          <a
+            href="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex12.png"
+            target="_blank"
+          >
+            <img
+              src="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex12.png"
+              alt="Gallery Image 7"
+            />
+          </a>
+          <div class="caption">Millcreek, Deodeca in OGF carto</div>
+          <div class="sub-caption">
+            Tiles and data courtesy OpenGeofiction and contributors.
+          </div>
+        </div>
+        <div class="gallery-item">
+          <a
+            href="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex13.png"
+            target="_blank"
+          >
+            <img
+              src="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex13.png"
+              alt="Gallery Image 7"
+            />
+          </a>
+          <div class="caption">South east FSA in OGF carto</div>
+          <div class="sub-caption">
+            Tiles and data courtesy OpenGeofiction and contributors.
+          </div>
+        </div>
+        <div class="gallery-item">
+          <a
+            href="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex14.png"
+            target="_blank"
+          >
+            <img
+              src="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex14.png"
+              alt="Gallery Image 7"
+            />
+          </a>
+          <div class="caption">Oudburg, Atreisie in OGF carto</div>
+          <div class="sub-caption">
+            Tiles and data courtesy OpenGeofiction and contributors.
+          </div>
+        </div>
+        <div class="gallery-item">
+          <a
+            href="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex15.png"
+            target="_blank"
+          >
+            <img
+              src="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex15.png"
+              alt="Gallery Image 7"
+            />
+          </a>
+          <div class="caption">The Imperium canon in Arhet carto</div>
+          <div class="sub-caption">
+            Tiles and data created by Geofictician and contributors, built on
+            the OpenStreetMap platform, including creative re-use of data shared
+            by OpenStreetMap contributors.
+          </div>
+        </div>
+        <div class="gallery-item">
+          <a
+            href="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex16.png"
+            target="_blank"
+          >
+            <img
+              src="https://raw.githubusercontent.com/nouxinf/ogfimg-examples/refs/heads/main/ex16.png"
+              alt="Gallery Image 7"
+            />
+          </a>
+          <div class="caption">AN114 in OGF carto</div>
+          <div class="sub-caption">
+            Tiles and data courtesy OpenGeofiction and contributors.
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <script>
-    function scrollToTop(){
-        window.scrollTo({top: 0, behavior: 'smooth'});
-    }
-  </script>
-</body>
+    <script>
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    </script>
+  </body>
 </html>
